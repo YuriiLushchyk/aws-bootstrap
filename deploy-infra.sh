@@ -1,8 +1,3 @@
-source aws_credentials.sh
-mkdir -p ~/.github
-echo "aws-bootstrap" > ~/.github/aws-bootstrap-repo
-echo "{{username}}" > ~/.github/aws-bootstrap-owner
-echo "{{Github_Token}}" > ~/.github/aws-bootstrap-access-token
 
 STACK_NAME=awsbootstrap
 REGION=eu-central-1
@@ -13,7 +8,7 @@ GH_OWNER=$(cat ~/.github/aws-bootstrap-owner)
 GH_REPO=$(cat ~/.github/aws-bootstrap-repo)
 GH_BRANCH=master
 
-AWS_ACCOUNT_ID=`aws sts get-caller-identity --profile awsbootstrap --query "Account" --output text`
+AWS_ACCOUNT_ID=`aws sts get-caller-identity --query "Account" --output text`
 CODEPIPELINE_BUCKET="$STACK_NAME-$REGION-codepipeline-$AWS_ACCOUNT_ID" 
 
 Echo $CODEPIPELINE_BUCKET
